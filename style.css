@@ -1,0 +1,151 @@
+:root {
+    --grass: #4ade80;
+    --grass-dark: #065f46;
+    --dirt: #5d4037;
+    --hole-inner: rgba(0, 0, 0, 0.9);
+    --gold: #fbbf24;
+    --accent: #10b981;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+    /* Prevent text selection and blue tap highlight on mobile */
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+}
+
+body {
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    background: linear-gradient(135deg, #117a38 0%, #064e3b 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    /* Touch action prevents accidental double-tap zoom */
+    touch-action: manipulation;
+    overflow: hidden;
+}
+
+.game-container {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px);
+    border-radius: 32px; /* Slightly smaller for mobile */
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    padding: 25px;
+    width: 100%;
+    max-width: 450px;
+    text-align: center;
+    position: relative;
+}
+
+.title {
+    font-size: 1.8rem; /* Scaled down for mobile */
+    font-weight: 900;
+    color: #064e3b;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+}
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.stat-card {
+    background: #f8fafc;
+    padding: 12px;
+    border-radius: 18px;
+    border: 2px solid #e2e8f0;
+}
+
+.stat-label { font-size: 0.65rem; color: #64748b; font-weight: 800; }
+.stat-value { font-size: 1.6rem; font-weight: 900; }
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    background: #cbd5e1;
+    padding: 12px;
+    border-radius: 24px;
+    margin-bottom: 20px;
+}
+
+.hole {
+    aspect-ratio: 1;
+    background: var(--dirt);
+    border-radius: 50%;
+    position: relative;
+    overflow: hidden;
+    border: 4px solid #4e342e;
+    box-shadow: inset 0 8px 15px var(--hole-inner);
+}
+
+.animal {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.8rem; /* Adjusted for smaller holes */
+    cursor: pointer;
+    animation: emerge 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes emerge {
+    0% { transform: translateY(100%); }
+    100% { transform: translateY(0); }
+}
+
+.btn {
+    background: var(--accent);
+    color: white;
+    padding: 18px;
+    border: none;
+    border-radius: 20px;
+    font-size: 1.2rem;
+    font-weight: 900;
+    width: 100%;
+    box-shadow: 0 6px 0 #065f46;
+    transition: transform 0.05s;
+}
+
+/* Only show hover on devices that support it (prevents "sticky" hover on touch) */
+@media (hover: hover) {
+    .btn:hover { background: #059669; }
+}
+
+.btn:active { 
+    transform: translateY(4px); 
+    box-shadow: 0 2px 0 #065f46; 
+}
+
+#high-score-tag {
+    background: var(--gold);
+    color: #78350f;
+    padding: 6px 14px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+    font-weight: 800;
+    margin: 10px 0;
+}
+
+/* Specific Phone Height Fixes */
+@media (max-height: 700px) {
+    .game-container { padding: 15px; }
+    .title { margin-bottom: 10px; font-size: 1.5rem; }
+    .animal { font-size: 2.2rem; }
+}
+
+.wobble { animation: wobble 0.2s ease-in-out; }
+@keyframes wobble {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(0.98); }
+}

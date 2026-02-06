@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔨 ULTRA BONK PRO 🔨</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="game-container" id="container">
+        <h1 class="title">🔨 ULTRA BONK</h1>
+        
+        <div class="stats-grid">
+            <div class="stat-card">
+                <p class="stat-label">SCORE</p>
+                <p class="stat-value" id="score" style="color: #10b981">0</p>
+            </div>
+            <div class="stat-card">
+                <p class="stat-label">TIME LEFT</p>
+                <p class="stat-value" id="time" style="color: #f59e0b">30</p>
+            </div>
+        </div>
+
+        <div class="game-grid" id="gameGrid"></div>
+
+        <button class="btn" id="startBtn" onclick="startGame()">PLAY NOW</button>
+
+        <div id="gameOver" class="hidden">
+            <p id="finalScore" style="font-size: 1.5rem; font-weight: bold; color: #064e3b;"></p>
+            <div id="high-score-tag">Best: <span id="highScore">0</span></div>
+            <button class="btn" style="margin-top: 20px;" onclick="startGame()">RETRY</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
